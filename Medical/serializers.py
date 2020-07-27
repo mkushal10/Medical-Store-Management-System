@@ -1,4 +1,3 @@
-#importing serializers
 from rest_framework import serializers
 
 from Medical.models import Company, CompanyBank, Medicine, MedicalDetails, Employee, Customer, Bill, \
@@ -8,7 +7,6 @@ from Medical.models import Company, CompanyBank, Medicine, MedicalDetails, Emplo
 class CompanySerliazer(serializers.ModelSerializer):
     class Meta:
         model=Company
-        # fields = ["name","license_no","address","contact_no"]
         fields="__all__"
 
 class CompanyBankSerializer(serializers.ModelSerializer):
@@ -44,6 +42,10 @@ class MedicalDetailsSerializer(serializers.ModelSerializer):
         response['medicine'] = MedicineSerliazer(instance.medicine_id).data
         return response
 
+class MedicalDetailsSerializerSimple(serializers.ModelSerializer):
+    class Meta:
+        model=MedicalDetails
+        fields="__all__"
 
 class EmployeeSerializer(serializers.ModelSerializer):
     class Meta:
